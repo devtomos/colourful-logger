@@ -18,7 +18,8 @@ use lazy_static::lazy_static;
 
 lazy_static! {
     static ref LOGGER: logger = logger::new();
-}```
+}
+```
 
 or you can use it inside of functions
 ```rust
@@ -27,7 +28,8 @@ fn main(): {
     let logger = logger::new();
 
     logger.infoSingle("Message", "Tag");
-}```
+}
+```
 
 
 ## Log Levels
