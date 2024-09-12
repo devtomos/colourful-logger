@@ -16,6 +16,7 @@ enum LogLevel {
     Silly
 }
 
+#[allow(dead_code)]
 pub struct Logger {
     depth: i32,
     colors: bool,
@@ -244,8 +245,4 @@ impl Logger {
     pub fn fatal_single(&self, message: &str, tag: &str) -> io::Result<()> {
         self.write_single( message, tag, LogLevel::Fatal)
     }
-}
-
-fn main() {    
-    Logger::new();
 }
