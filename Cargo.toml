@@ -13,6 +13,3 @@ repository = "https://github.com/devtomos/logger"
 colored = "2"
 pad = "0.1"
 chrono = "0.4.38"
-
-[lib]
-crate-type = ["lib"]
