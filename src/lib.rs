@@ -4,7 +4,7 @@ use colored::Colorize;
 use pad::{PadStr, Alignment};
 use chrono::prelude::*;
 use std::backtrace;
-use std::io::{self, Write};
+use std::io::Write;
 
 enum LogLevel {
     Fatal,
@@ -113,7 +113,7 @@ impl Logger {
         }
     }
 
-    fn write<T: std::fmt::Debug>(&self, message: &str, tag: &str, level: LogLevel, at: bool, object: &Option<T>) -> io::Result<()> {
+    fn write<T: std::fmt::Debug>(&self, message: &str, tag: &str, level: LogLevel, at: bool, object: &Option<T>)  {
         let message = message.to_string();
         let tag = tag.to_string();
         let connectors = &Connectors::default();
@@ -170,12 +170,11 @@ impl Logger {
     
         let stdout = std::io::stdout();
         let mut handle = stdout.lock();
-        writeln!(handle, "{}", log)?;
-    
-        Ok(())
+        writeln!(handle, "{}", log).unwrap();
+
     }
 
-    fn write_single(&self, message: &str, tag: &str, level: LogLevel) -> io::Result<()> {
+    fn write_single(&self, message: &str, tag: &str, level: LogLevel)  {
         let message = message.to_string();
         let tag = tag.to_string();
         let connectors = &Connectors::default();
@@ -191,57 +190,54 @@ impl Logger {
 
         let stdout = std::io::stdout();
         let mut handle = stdout.lock();
-        writeln!(handle, "{}", log)?;
-    
-        Ok(())
-
+        writeln!(handle, "{}", log).unwrap();
     }
 
-    pub fn silly<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn silly<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write(message, tag, LogLevel::Silly, at, object)
     }
 
-    pub fn silly_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn silly_single(&self, message: &str, tag: &str)  {
         self.write_single(message, tag, LogLevel::Silly)
     }
 
-    pub fn debug<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn debug<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write(message, tag, LogLevel::Debug, at, object)
     }
 
-    pub fn debug_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn debug_single(&self, message: &str, tag: &str)  {
         self.write_single(message, tag, LogLevel::Debug)
     }
 
-    pub fn info<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn info<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write( message, tag, LogLevel::Info, at, object)
     }
 
-    pub fn info_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn info_single(&self, message: &str, tag: &str)  {
         self.write_single( message, tag, LogLevel::Info)
     }
 
-    pub fn warn<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn warn<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write( message, tag, LogLevel::Warn, at, object)
     }
 
-    pub fn warn_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn warn_single(&self, message: &str, tag: &str)  {
         self.write_single( message, tag, LogLevel::Warn)
     }
 
-    pub fn error<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn error<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write( message, tag, LogLevel::Error, at, object)
     }
 
-    pub fn error_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn error_single(&self, message: &str, tag: &str)  {
         self.write_single( message, tag, LogLevel::Error)
     }
 
-    pub fn fatal<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>) -> io::Result<()> {
+    pub fn fatal<T: std::fmt::Debug>(&self, message: &str, tag: &str, at: bool, object: &Option<T>)  {
         self.write( message, tag, LogLevel::Fatal, at, object)
     }
 
-    pub fn fatal_single(&self, message: &str, tag: &str) -> io::Result<()> {
+    pub fn fatal_single(&self, message: &str, tag: &str)  {
         self.write_single( message, tag, LogLevel::Fatal)
     }
 }

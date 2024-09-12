@@ -10,24 +10,30 @@ The Colourful-Logger is a simple yet effective logging utility designed to enhan
 - Simple integration into projects
 - Immediate visual improvement
 
+## Todo
+- [] Customise the date and such
+- [] Check for ENV and use that for logging
+- [] Incorporate the options (they dont get used right now)
+
 ## How to use
 You can use either lazy_static! to use the logger as a global variable
 ```rust
-use colourful-logger::{Logger};
+use colourful_logger::Logger as Logger;
 use lazy_static::lazy_static;
 
 lazy_static! {
-    static ref LOGGER: logger = logger::new();
+    static ref LOGGER: logger = Logger::new();
 }
 ```
 
 or you can use it inside of functions
 ```rust
+use colourful_logger::Logger as Logger;
 
 fn main(): {
-    let logger = logger::new();
+    let logger = Logger::new();
 
-    logger.infoSingle("Message", "Tag");
+    logger.info_single("Message", "Tag");
 }
 ```
 
