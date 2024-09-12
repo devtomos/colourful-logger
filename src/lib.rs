@@ -1,6 +1,5 @@
 #![crate_type = "lib"]
 #![crate_name = "logger"]
-#![allow(warnings)]
 
 use colored::Colorize;
 use pad::{PadStr, Alignment};
