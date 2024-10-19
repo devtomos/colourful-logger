@@ -1,6 +1,6 @@
 # Colourful-Logger
 
-The Colourful-Logger is a simple yet effective logging utility designed to enhance the readability of log messages by incorporating vibrant colors. This tool is particularly useful for developers who need to quickly identify and differentiate between various types of log messages, such as errors, warnings, and informational messages. By using distinct colors for different log levels, the Colourful-Logger makes it easier to spot critical issues and track the flow of execution in your Rust applications. Its straightforward implementation ensures that it can be easily integrated into any project, providing an immediate visual improvement to your logging output.
+The Colourful-Logger is a simple yet effective logging utility designed to enhance the readability of log messages by incorporating vibrant colors.
 
 ## Features
 - Easy to use
@@ -10,11 +10,6 @@ The Colourful-Logger is a simple yet effective logging utility designed to enhan
 - Simple integration into projects
 - Immediate visual improvement
 
-## Todo
-- [] Customise the date and such
-- [] Check for ENV and use that for logging
-- [] Incorporate the options (they dont get used right now)
-
 ## How to use
 You can use either lazy_static! to use the logger as a global variable
 ```rust
@@ -22,7 +17,11 @@ use colourful_logger::Logger as Logger;
 use lazy_static::lazy_static;
 
 lazy_static! {
-    static ref LOGGER: logger = Logger::new();
+    static ref LOGGER: Logger = Logger::new();
+}
+
+fn main(): {
+    LOGGER.info("This is a message!", "Tag");
 }
 ```
 
@@ -33,22 +32,9 @@ use colourful_logger::Logger as Logger;
 fn main(): {
     let logger = Logger::new();
 
-    logger.info_single("Message", "Tag");
+    logger.info("Message", "Tag");
 }
 ```
-
-
-## Log Levels
-
-There are 6 log levels in total:
-- Fatal
-- Error
-- Warn
-- Info
-- Debug
-- Silly
-
-Each being more serve for their purpose inside the code.
 
 ## Bug Reports | Features
 
